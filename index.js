@@ -76,7 +76,7 @@ const displayImg=(trees) => {
     const imgDiv=document.createElement("div")
      imgDiv.innerHTML=`
          
-   <div class="p-3 bg-white h-[450px] mt-3"> 
+   <div class="p-3 bg-white h-[450px] mt-4"> 
          <img src="${tree.image}" alt="" class="rounded-md w-[300px] h-[200px]">
              <h2 onclick="loadModal(${tree.id})" class="font-bold mt-1 text-[18px]">${tree.name}</h2> 
              <p class="font-light mt-2 ">${tree.description}</p>
@@ -92,7 +92,15 @@ const displayImg=(trees) => {
         Img_container.append(imgDiv)
     }
 }
-
+const loadAll=() => {
+  loadSpiner(true)
+  fetch("https://openapi.programming-hero.com/api/plants")
+  .then(res=>res.json())
+  .then(data =>{
+    displayImg(data.plants)
+    loadSpiner(false)
+  })
+}
 
 const displayCatagories=(catagoris) => {
   
@@ -102,14 +110,16 @@ catagoris_container.innerHTML=" "
 
 const allBtnDiv = document.createElement("div")
   allBtnDiv.innerHTML = `
-    <button onclick="activeBtn(this) loadALL()" 
-      class="text-sm hover:bg-green-500  rounded-md p-2 font-semi-bold  ">
-      All Trees   </button> `
+     
+    <button onclick="activeBtn(this) ; loadAll(this) " 
+      class="text-sm hover:bg-green-500  rounded-md p-2 font-semi-bold category-btn"> ALL tress
+        </button> `
    
   
 
 
-//   catagoris_container.append(allBtnDiv);
+   catagoris_container.append(allBtnDiv);
+   
 
 for (const categori of catagoris) {
     
