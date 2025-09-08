@@ -68,21 +68,21 @@ const displayImg=(trees) => {
 
     
   
-    const Img_container=document.getElementById("main-card")
-    Img_container.innerHTML=""
+ const Img_container=document.getElementById("main-card")
+   Img_container.innerHTML=""
 
-    for (const tree of trees) {
+   for (const tree of trees) {
         
-        const imgDiv=document.createElement("div")
-        imgDiv.innerHTML=`
+    const imgDiv=document.createElement("div")
+     imgDiv.innerHTML=`
          
-         <div class="p-3 bg-white h-[450px]"> 
-                    <img src="${tree.image}" alt="" class="rounded-md w-[300px] h-[200px]">
-                    <h2 onclick="loadModal(${tree.id})" class="font-bold mt-1 text-[18px]">${tree.name}</h2> 
-                    <p class="font-light mt-2 slice('0','100')">${tree.description}</p>
-                    <div class="flex justify-between mt-3">
-                        <p  class="bg-green-300 rounded-xl p-2 text-md bg-cover ">${tree.category}</p>
-                        <p class="p-2 mt-2">৳${tree.price}</p>
+   <div class="p-3 bg-white h-[450px]"> 
+         <img src="${tree.image}" alt="" class="rounded-md w-[300px] h-[200px]">
+             <h2 onclick="loadModal(${tree.id})" class="font-bold mt-1 text-[18px]">${tree.name}</h2> 
+             <p class="font-light mt-2 ">${tree.description}</p>
+             <div class="flex justify-between mt-3">
+                 <p  class="bg-green-300 rounded-xl p-2 text-md bg-cover ">${tree.category}</p>
+                   <p class="p-2 mt-2">৳${tree.price}</p>
                     </div> 
                     <button  onclick="addToCart('${tree.name}', ${tree.price})" class="rounded-3xl text-white p-1font-bold w-12/12 mt-2 bg-green-700 p-2">Add to Cart</button>
 
