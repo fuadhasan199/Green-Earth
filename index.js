@@ -12,6 +12,41 @@ const loadImg=(id) => {
     .then((data)=>displayImg(data.plants)) 
 } 
 
+const loadModal=async(id) => {
+   const url=`https://openapi.programming-hero.com/api/plants`
+   const res=await fetch(url)
+   const details=await res.json() 
+    displayModal(details.plants.find(tree => tree.id == id))
+} 
+
+
+
+const displayModal=(plant) => {
+   console.log(plant); 
+
+  const detailsBox=document.getElementById("details-container")
+  detailsBox.innerHTML=`
+  
+     <div class="modal-box">
+    <img src="${plant.image}" alt="" class="w-full h-60">
+    <h2 class="mt-2 font-bold">Category :${plant.category}</h2> 
+    <p class=" font-bold mt-2">Price : ${plant.price}  </p> 
+    <p class="font-bold mt-1">Description : ${plant.description}</p>
+      <form method="dialog" class="flex justify-center">
+        
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  
+  
+  `
+  
+
+document.getElementById("my_modal_5").showModal()
+
+
+
+}
 
 
 const displayImg=(trees) => {
@@ -26,8 +61,8 @@ const displayImg=(trees) => {
          
          <div class="p-3 bg-white h-[450px]"> 
                     <img src="${tree.image}" alt="" class="rounded-md w-[300px] h-[200px]">
-                    <h2 class="font-bold mt-1 text-[18px]">${tree.name}</h2> 
-                    <p class="font-light mt-2">${tree.description}</p>
+                    <h2 onclick="loadModal(${tree.id})" class="font-bold mt-1 text-[18px]">${tree.name}</h2> 
+                    <p class="font-light mt-2 slice('0','100')">${tree.description}</p>
                     <div class="flex justify-between mt-3">
                         <p  class="bg-green-300 rounded-xl p-2 text-md bg-cover ">${tree.category}</p>
                         <p class="p-2 mt-2">৳${tree.price}</p>
