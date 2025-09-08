@@ -76,7 +76,7 @@ const displayImg=(trees) => {
     const imgDiv=document.createElement("div")
      imgDiv.innerHTML=`
          
-   <div class="p-3 bg-white h-[450px] mt-4"> 
+   <div class="p-3 bg-white  mt-4"> 
          <img src="${tree.image}" alt="" class="rounded-md w-[300px] h-[200px]">
              <h2 onclick="loadModal(${tree.id})" class="font-bold mt-1 text-[18px]">${tree.name}</h2> 
              <p class="font-light mt-2 ">${tree.description}</p>
