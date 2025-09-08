@@ -6,10 +6,14 @@ const loadCatagories= () => {
 } 
 
 const loadImg=(id) => { 
-  
+   loadSpiner(true)
     fetch(`https://openapi.programming-hero.com/api/category/${id}`) 
     .then((res) =>res.json() )
-    .then((data)=>displayImg(data.plants)) 
+    .then((data)=>{
+        displayImg(data.plants) 
+      loadSpiner(false) }
+)
+   
 } 
 
 const loadModal=async(id) => {
@@ -19,6 +23,17 @@ const loadModal=async(id) => {
     displayModal(details.plants.find(tree => tree.id == id))
 } 
 
+const loadSpiner=(status) => {
+  
+    if(status==true){
+        document.getElementById("spiner").classList.remove("hidden")
+        document.getElementById("main-card").classList.add("hidden")
+    }
+    else{
+        document.getElementById("main-card").classList.remove("hidden")
+        document.getElementById("spiner").classList.add("hidden")
+    }
+}
 
 
 const displayModal=(plant) => {
@@ -49,7 +64,9 @@ document.getElementById("my_modal_5").showModal()
 }
 
 
-const displayImg=(trees) => {
+const displayImg=(trees) => { 
+
+    
   
     const Img_container=document.getElementById("main-card")
     Img_container.innerHTML=""
@@ -129,10 +146,6 @@ const activeBtn=(button) => {
  
 
 
-
-
-
-//  add to cart section
 
 loadCatagories() 
 
