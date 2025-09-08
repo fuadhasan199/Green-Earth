@@ -48,23 +48,23 @@ const catagoris_container=document.getElementById("catagories")
  
 catagoris_container.innerHTML=" " 
 
-const allBtnDiv = document.createElement("div");
+const allBtnDiv = document.createElement("div")
   allBtnDiv.innerHTML = `
-    <button onclick="loadALL(categori.id)" 
-      class="text-sm hover:bg-green-500  rounded-md p-2 font-semi-bold">
+    <button onclick="activeBtn(this) loadALL()" 
+      class="text-sm hover:bg-green-500  rounded-md p-2 font-semi-bold  ">
       All Trees   </button> `
    
   
 
 
-  catagoris_container.append(allBtnDiv);
+//   catagoris_container.append(allBtnDiv);
 
 for (const categori of catagoris) {
     
  const btnDiv=document.createElement("div")
 
   btnDiv.innerHTML = `
-  <button onclick="loadImg('${categori.id}')" class="text-sm hover:bg-green-500 p-2 ">
+  <button onclick=" activeBtn(this); loadImg('${categori.id}')" class="text-sm hover:bg-green-500 p-2 category-btn  ">
     ${categori.category_name}
   </button>
 `
@@ -79,8 +79,25 @@ for (const categori of catagoris) {
 
 
 
-}
+} 
 
+
+const activeBtn=(button) => {
+
+  const buttons=document.querySelectorAll(".category-btn")  
+
+  buttons.forEach(btn =>btn.classList.remove("bg-green-600","text-white"))
+
+  button.classList.add("bg-green-600")
+
+} 
+ 
+
+
+
+
+
+//  add to cart section
 
 loadCatagories() 
 
@@ -106,9 +123,16 @@ function updateCart() {
     totalDiv.textContent = `Total: ৳ ${total}`;
     cartContainer.appendChild(totalDiv);
 }
-function addToCart(name, price) {
-    cart.push({ name, price });
-    total += price;
+function addToCart(name, price) { 
+    
+    const addTOcart=confirm(`${name} has been added this cart`)
+
+    if(addTOcart){
+
+ 
+    cart.push({ name, price })
+    total += price 
+       }
     updateCart();
 }
 
